@@ -34,9 +34,10 @@ urlpatterns = [
     path('contact/', views.contact_page, name='contact'),
     path('login/', views.login_page, name='login'),
     path('register/', views.register, name='register'),
-    path('products/', include("products.urls")),
-    path('products/', include("products.urls")),
+    path('products/', include('products.urls')),
+    path('search/', include('search.urls')),
 
+    # path('products/', include("products.urls")),
     # path('featured/', ProductFeaturedListView.as_view(), name='featured'),
     # path('featured/<int:pk>', ProductFeaturedDetailView.as_view(), name='featured-det'),
     # path('products/', ProductListView.as_view(), name='products'),

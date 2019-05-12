@@ -2,8 +2,14 @@
 
 {% block content %}
 <div class="row">
+    {% if request.GET.get %}
+    <div class="col-12 mb-3">
+        Searched for <b>"{{ request.GET.q }}"</b>
+        <hr/>
+    </div>
+    {% endif %}
     {% for obj in object_list %}
-    <div class="col-3 mr-auto mb-2">
+    <div class="col">
         {% include "products/snippets/card.html" with instance=obj %}
     </div>
     {% endfor %}

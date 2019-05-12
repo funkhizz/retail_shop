@@ -1,5 +1,14 @@
-{{ object.title }} <br>
-{{ object.description }} <br>
-{% if object.image %}
-<img src="{{ object.image.url }}" alt=""> <!-- add url to get actual path -->
-{% endif %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+                <h1>{{ object.title }}</h1> <br>
+                {{ object.description|linebreaks }} <br>
+                {% if object.image %}
+                <img src="{{ object.image.url }}" alt="" height="250" width="300"> <!-- add url to get actual path -->
+                {% endif %}
+        </div>
+</div>
+{% endblock %}
