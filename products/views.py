@@ -1,10 +1,18 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404, Http404
 from .models import Product
+from carts.models import Cart
+
 
 class ProductDetailSlugView(DetailView):
     queryset = Product.objects.all()
     template_name = "products/detail.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductDetailSlugView, self).get_context_data(*args, **kwargs)
+        cart_obj, new_obj = Cart.objects.new_or_get(self.request)
+        context["cart"] = cart_obj
+        return context
 
     def get_object(self, *args, **kwargs):
         slug = self.kwargs.get('slug')
@@ -20,7 +28,8 @@ class ProductDetailSlugView(DetailView):
             raise Http404("Hmmmm")
         return instance
 
-class ProductListView(ListView): # class based view
+
+class ProductListView(ListView):  # class based view
     # model = Product // same way that queryset
     queryset = Product.objects.all()
     template_name = "products/list.html"
@@ -30,18 +39,22 @@ class ProductListView(ListView): # class based view
     #     print(context)
     #     return context
 
+
 class ProductFeaturedListView(ListView):
     template_name = "products/list.html"
+
     def get_queryset(self, *args, **kwargs):
         return Product.objects.all().featured()
 
-class ProductFeaturedDetailView(DetailView): # class based view
+
+class ProductFeaturedDetailView(DetailView):  # class based view
     queryset = Product.objects.all().featured()
     template_name = "products/featured-detail.html"
     # def get_queryset(self, *args, **kwargs):
     #     return Product.objects.featured()
 
-def product_list_view(request): # function based view
+
+def product_list_view(request):  # function based view
     queryset = Product.objects.all()
     context = {
         'object_list': queryset,
@@ -49,8 +62,7 @@ def product_list_view(request): # function based view
     return render(request, "products/list.html", context)
 
 
-
-class ProductDetailView(DetailView): # class based view
+class ProductDetailView(DetailView):  # class based view
     # model = Product // same way that queryset
     queryset = Product.objects.all()
     template_name = "products/detail.html"
@@ -62,8 +74,9 @@ class ProductDetailView(DetailView): # class based view
             raise Http404("Product doesnot exist")
         return instance
 
-def product_detail_view(request, pk=None, *args, **kwargs): # function based view
-    instance = Product.objects.get(pk=pk, featured=True) #or id
+
+def product_detail_view(request, pk=None, *args, **kwargs):  # function based view
+    instance = Product.objects.get(pk=pk, featured=True)  # or id
     # instance = get_object_or_404(Product, pk=pk)
 
     instance = Product.objects.get_by_id(pk)
@@ -82,6 +95,7 @@ def product_detail_view(request, pk=None, *args, **kwargs): # function based vie
         'object': instance,
     }
     return render(request, "products/detail.html", context)
+
 
 def product_detail_slug(request, slug):
     instance = Product.objects.get(slug=slug)

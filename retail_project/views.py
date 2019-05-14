@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ContactForm, LoginForm, RegisterForm
 def home_page(request):
+
     context = {
         "title": "Hello world!",
         "premium_content": "YEAH!"
@@ -10,6 +11,7 @@ def home_page(request):
     return render(request, "home_page.html", context)
 
 def about_page(request):
+
     context = {
         "title": "Hello guy! Welcome you on about page"
     }

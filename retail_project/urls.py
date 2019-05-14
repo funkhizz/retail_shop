@@ -18,15 +18,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-# from products.views import (ProductListView,
-#                         product_list_view,
-#                         ProductDetailView,
-#                         product_detail_view,
-#                         ProductFeaturedListView,
-#                         ProductFeaturedDetailView,
-#                         ProductDetailSlugView,
-# )
-
 urlpatterns = [
     path('', views.home_page, name='home'),
     path('admin/', admin.site.urls),
@@ -36,16 +27,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('products/', include('products.urls')),
     path('search/', include('search.urls')),
-
-    # path('products/', include("products.urls")),
-    # path('featured/', ProductFeaturedListView.as_view(), name='featured'),
-    # path('featured/<int:pk>', ProductFeaturedDetailView.as_view(), name='featured-det'),
-    # path('products/', ProductListView.as_view(), name='products'),
-    # path('products_fbv/', product_list_view, name='products_fbv'),
-    # path('products/<slug>', ProductDetailSlugView.as_view(), name='products'),
-    # path('products/', ProductListView.as_view(), name='products'),
-    # # path('products/<int:pk>', ProductDetailView.as_view(), name='details'),
-    # path('products_fbv/<int:pk>', product_detail_view, name='details_fbv'),
+    path('cart/', include('carts.urls')),
 ]
 
 if settings.DEBUG:
