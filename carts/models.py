@@ -1,7 +1,8 @@
+from decimal import Decimal
 from django.db import models
 from django.conf import settings
 from products.models import Product
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import m2m_changed, pre_save
 
 User = settings.AUTH_USER_MODEL
 
@@ -53,3 +54,13 @@ def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
         instance.save()
 
 m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
+
+# apply subtotal - for example for tax usage
+# def pre_save_cart_reveicer(sender, instance, *args, **kwargs):
+#     if instance. subtotal > 0:
+#         tax = 1
+#         instance.total = instance.subtotal * tax # if tax is needed
+#     else:
+#         instance.total = 0.00
+
+# pre_save.connect(pre_save_cart_reveicer, sender=Cart)

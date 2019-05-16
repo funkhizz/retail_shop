@@ -23,9 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', views.about_page, name='about'),
     path('contact/', views.contact_page, name='contact'),
-    path('login/', views.login_page, name='login'),
-    path('register/', views.register, name='register'),
+    path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
     path('search/', include('search.urls')),
     path('cart/', include('carts.urls')),
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Cart
 from products.models import Product
-
+from orders.models import Order
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request) # new_or_get from CartManager
@@ -22,3 +22,13 @@ def cart_update(request):
             cart_obj.products.add(product_obj) # add to m2m
         request.session['cart_items'] = cart_obj.products.count()
     return redirect("cart_home")
+
+def checkout_home(request):
+    cart_obj, cart_created = Cart.objects.new_or_get(request)
+    order_obj = None
+    if cart_created or cart_obj.products.count() == 0:
+        return redirect("cart_home")
+    else:
+        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
+        print(new_order_obj)
+    return render(request, "carts/checkout.html", {"object": order_obj})

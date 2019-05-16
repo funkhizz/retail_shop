@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'search.apps.SearchConfig',
     'tags.apps.TagsConfig',
-    'carts.apps.CartsConfig'
+    'carts.apps.CartsConfig',
+    'orders.apps.OrdersConfig',
+    'accounts.apps.AccountsConfig',
+    'billing.apps.BillingConfig',
 
 ]
 
@@ -54,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 ROOT_URLCONF = 'retail_project.urls'
 
 TEMPLATES = [
