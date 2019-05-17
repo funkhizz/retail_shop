@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{{ object.order_id }} --- {{ object.cart }}
     {% if not billing_profile %}
         <div class="row text-center">
             <div class="col-12 col-md-6">
@@ -10,6 +11,8 @@
             </div>
             <div class="col-12 col-md-6">
                 <p class="lead">Continue as Guest</p>
+                {% url 'guest_login' as guest_login %}
+                {% include "accounts/snippets/form.html" with form=guest_form next_url=request.build_absolute_uri action_url=guest_login %}
             </div>
         </div>
     {% else %}
