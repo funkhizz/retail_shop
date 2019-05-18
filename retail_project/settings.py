@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'billing.apps.BillingConfig',
     'addresses.apps.AddressesConfig',
-
 ]
 
 MIDDLEWARE = [

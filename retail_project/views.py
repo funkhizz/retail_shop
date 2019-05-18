@@ -5,7 +5,6 @@ from .forms import ContactForm
 from django.contrib.auth.views import LogoutView
 
 def home_page(request):
-
     context = {
         "title": "Hello world!",
         "premium_content": "YEAH!"
