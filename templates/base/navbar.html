@@ -57,8 +57,7 @@
       </li>
       {% endif %}
       <li class="nav-item {% if request.path == cart_url %} active {% endif %}">
-          <a class="nav-link" href="{{ cart_url }}"><i class="fas fa-shopping-cart"></i>{% if request.session.cart_items == 0 %}{% else %} {{ request.session.cart_items }}{% endif %}</a>
-        </li>
+          <a class="nav-link" href="{{ cart_url }}"><i class="fa fa-shopping-cart"></i><span class="navbar-cart-count">{% if request.session.cart_items == 0 %}{% else %} {{ request.session.cart_items }}{% endif %}</span></a></li>
     </ul>
     <!-- Search form -->
     <form method="GET" action="{% url 'query' %}" class="form my-2 my-lg-0">

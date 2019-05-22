@@ -7,7 +7,7 @@ from billing.models import BillingProfile
 from accounts.models import GuestEmail
 from addresses.forms import AddressForm
 from addresses.models import Address
-
+from django.http import JsonResponse
 
 
 def cart_home(request):
@@ -28,9 +28,18 @@ def cart_update(request):
             request)  # create cart object
         if product_obj in cart_obj.products.all():
             cart_obj.products.remove(product_obj)
+            added = False
         else:
             cart_obj.products.add(product_obj)  # add to m2m
+            added = True
         request.session['cart_items'] = cart_obj.products.count()
+        if request.is_ajax():
+            json_data = {
+                "added": added,
+                "removed": not added,
+                "count": cart_obj.products.count(),
+            }
+            return JsonResponse(json_data)
     return redirect("cart_home")
 
 
