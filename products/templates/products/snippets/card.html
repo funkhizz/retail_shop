@@ -10,10 +10,9 @@
         <p class="card-text">{{ instance.description|truncatewords:14 }}</p>
         <div class="text-center">
             <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>
-            <a href="#" class="btn btn-success">Add to card</a>
+            {% include "products/snippets/update_cart.html" with product=instance cart=cart %}
+
         </div>
-
-
         <!-- <a href="{% url 'products:detail' instance.slug %}" class="btn btn-primary">URL shortcut</a> -->
     </div>
 </div>
