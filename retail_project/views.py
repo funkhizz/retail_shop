@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, get_user_model
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.contrib.auth.views import LogoutView
@@ -19,12 +19,22 @@ def about_page(request):
     return render(request, "about_page.html", context)
 
 def contact_page(request):
-    contact_form = ContactForm(request.POST or None)
+    contact_form = ContactForm(request.POST or None) # ContactForm() refresh form after submit; or request.POST or None
+
     context = {
-            "form": contact_form,
-    }
+        "title": "Contact form",
+        "content": "Welcome to the contact page.",
+        "form": contact_form
+    } # if i want blank forms after submit
     if contact_form.is_valid():
-        context["form"] = ContactForm() # if i want blank forms after submit
+        # print(contact_form.cleaned_data)
+        if request.is_ajax():
+            return JsonResponse({"message": "Thank you for your submission!"})
+
+    if contact_form.errors:
+        errors = contact_form.errors.as_json()
+        if request.is_ajax():
+            return HttpResponse(errors, status=400, content_type='application/json')
 
     # if request.method == "POST":
     #     print(request.POST)
