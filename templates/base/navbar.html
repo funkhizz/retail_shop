@@ -60,14 +60,7 @@
           <a class="nav-link" href="{{ cart_url }}"><i class="fa fa-shopping-cart"></i><span class="navbar-cart-count">{% if request.session.cart_items == 0 %}{% else %} {{ request.session.cart_items }}{% endif %}</span></a></li>
     </ul>
     <!-- Search form -->
-    <form method="GET" action="{% url 'query' %}" class="form my-2 my-lg-0">
-      <div class="input-group">
-          <input class="form-control" type="text" placeholder="Search" name='q' value="{{ request.GET.q }}" aria-label="Search">
-          <span class="input-group-btn">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-          </span>
-      </div>
-    </form>
+    {% include "search/snippets/search-form.html" %}
   </div>
 </div>
 </nav>
