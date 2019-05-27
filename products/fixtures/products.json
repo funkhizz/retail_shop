@@ -1,0 +1,114 @@
+[
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "title": "Samsung Galaxy 10",
+        "slug": "samsung",
+        "description": "great phone for its price",
+        "price": "9.99",
+        "image": "products/SamsungGalaxy10/846994.png",
+        "featured": false,
+        "active": false,
+        "timestamp": "2019-05-11T12:57:37.483Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "title": "Iphone",
+        "slug": "iphone",
+        "description": "32 gb a lot for your photoes",
+        "price": "9.99",
+        "image": "products/Iphone/1531414.jpg",
+        "featured": false,
+        "active": false,
+        "timestamp": "2019-05-11T12:57:37.483Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "xiomi",
+        "slug": "xiomi",
+        "description": "sucks",
+        "price": "9.99",
+        "image": "products/xiomi/2219972.png",
+        "featured": true,
+        "active": true,
+        "timestamp": "2019-05-11T12:57:37.483Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "title": "Nokia",
+        "slug": "nokia",
+        "description": "shit phone",
+        "price": "9.99",
+        "image": "products/Nokia/1002850.jpeg",
+        "featured": false,
+        "active": true,
+        "timestamp": "2019-05-12T16:52:02.896Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "title": "Samsung g2",
+        "slug": "samsung-g2",
+        "description": "nice phone without buttons",
+        "price": "9.99",
+        "image": "products/Samsungg2/4413004.jpeg",
+        "featured": false,
+        "active": false,
+        "timestamp": "2019-05-17T21:16:46.572Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "title": "Acer",
+        "slug": "acer",
+        "description": "shit",
+        "price": "9.99",
+        "image": "products/Acer/460577.png",
+        "featured": false,
+        "active": false,
+        "timestamp": "2019-05-17T21:17:20.245Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "title": "Phone 5t",
+        "slug": "phone-5t",
+        "description": "Great",
+        "price": "9.99",
+        "image": "products/Phone5t/4133839.jpeg",
+        "featured": false,
+        "active": false,
+        "timestamp": "2019-05-17T21:18:01.678Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+        "title": "Jotaphone",
+        "slug": "jotaphone",
+        "description": "govno",
+        "price": "9.99",
+        "image": "products/Jotaphone/3690671.jpeg",
+        "featured": false,
+        "active": false,
+        "timestamp": "2019-05-18T17:24:52.619Z"
+    }
+}
+]

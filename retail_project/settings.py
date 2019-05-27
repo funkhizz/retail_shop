@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'addresses.apps.AddressesConfig',
 ]
 
+AUTH_USER_MODEL = 'accounts.User' # changes the build in user model to custom
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
