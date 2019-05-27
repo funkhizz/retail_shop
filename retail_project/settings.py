@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #project apps
+    'analytics.apps.AnalyticsConfig',
     'products.apps.ProductsConfig',
     'search.apps.SearchConfig',
     'tags.apps.TagsConfig',
@@ -49,6 +50,9 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.User' # changes the build in user model to custom
+
+FORCE_SESSION_TO_ONE = False
+FORCE_INNACTIVE_USER_ENDSESSION = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
