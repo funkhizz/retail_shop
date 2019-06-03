@@ -1,13 +1,13 @@
 <div class="card" style="width: 17rem;">
     {% if instance.image %}
     <div class="card-header">
-    <a href="{{ instance.get_absolute_url }}"><img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title }} logo" height="250" width="300"></a>
+    <a href="{{ instance.get_absolute_url }}"><img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title }} logo" height="300" width="1"></a>
 
     </div>
     {% endif %}
     <div class="card-body">
         <h5 class="card-title text-center">{{ instance.title }}</h5>
-        <p class="card-text">{{ instance.description|truncatewords:14 }}</p>
+        <p class="card-text">{{ instance.description|truncatewords:5 }}</p>
             <div class="row">
                 <a href="{{ instance.get_absolute_url }}" class="btn btn-primary mr-2">View</a>
                 {% include "products/snippets/update_cart.html" with product=instance cart=cart %}
