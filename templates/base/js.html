@@ -15,9 +15,14 @@
 <!-- jQuery Confirm JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
+<!-- JS render  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.3/jsrender.min.js"></script>
+{% include 'base/js_stripe_form.html' %}
+
 <!-- Django secure AJAX JS -->
 <script src="{% static 'js/csrf.ajax.js' %}"></script>
 
 <!-- Project custom JS -->
 <script src="{% static 'js/project.js' %}"></script>
+
 
