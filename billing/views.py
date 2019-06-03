@@ -3,10 +3,11 @@ from django.http import JsonResponse, HttpResponse
 import stripe
 from django.utils.http import is_safe_url
 from billing.models import BillingProfile, Card
-stripe.api_key = "sk_test_KTD8bZQe1jHFF1tLelcTZPgr00PZpIFVwV"
-STRIPE_PUB_KEY = 'pk_test_O5HC5E5txvOnI4WBbwPregB400xCMlbyq6'
+from django.conf import settings
+STRIPE_SECRET_KEY = getattr(settings, "STRIPE_SECRET_KEY", "sk_test_KTD8bZQe1jHFF1tLelcTZPgr00PZpIFVwV")
+STRIPE_PUB_KEY = getattr(settings, "STRIPE_PUB_KEY", "pk_test_O5HC5E5txvOnI4WBbwPregB400xCMlbyq6")
 
-
+stripe.api_key = STRIPE_SECRET_KEY
 def payment_method_view(request):
     # if request.user.is_authenticated:
     #     billing_profile = request.user.billing_profile

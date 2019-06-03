@@ -50,20 +50,31 @@
     </div>
 </div>
 {% else %}
-<p>Cart Items: {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    {% if not has_card %}
+    <!-- enter credit card here -->
+    <div class="col-10 col-md-6 mx-auto">
+            <h1>Add payment method</h1>
+            <p>4000058260000005</p>
+            <div class="stripe-payment-form" data-next-url="{{ request.build_absolute_uri }}" data-token='{{ publish_key }}' data-btn-title="Add Payment Method"></div>
+        </div>
 
-<h1>Finalize Checkout</h1>
-<p>Shipping address: {{ object.shipping_address.get_address }}</p>
-<p>Billing address: {{ object.billing_address.get_address }}</p>
+    <script src="{% static 'js/stripe_dev.js'%}"></script>
 
-<p>Cart Total: {{ object.cart.total }} $</p>
-<p>Shipping Total: {{ object.shipping_total }} $</p>
-<p>Order Total: {{ object.order_total }} $</p>
-<form class="form" action="" method="POST">
-    {% csrf_token %}
-    <button class="btn btn-success" type="submit">Checkout</button>
-</form>
+    {% else %}
+    <p>Cart Items: {% for product in object.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
 
+    <h1>Finalize Checkout</h1>
+    <p>Shipping address: {{ object.shipping_address.get_address }}</p>
+    <p>Billing address: {{ object.billing_address.get_address }}</p>
+
+    <p>Cart Total: {{ object.cart.total }} $</p>
+    <p>Shipping Total: {{ object.shipping_total }} $</p>
+    <p>Order Total: {{ object.order_total }} $</p>
+    <form class="form" action="" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-success" type="submit">Checkout</button>
+    </form>
+    {% endif %}
 {% endif %}
 {% endif %}
 {% endblock %}

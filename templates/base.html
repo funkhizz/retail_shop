@@ -13,13 +13,12 @@
 
 <body>
   {% include "base/navbar.html" with brand_name="eCommerce" %}
+  {% include "base/js.html" %}
   <div class="container">
       {% block content %}
       {% endblock %}
   </div>
-  {% include "base/js.html" %}
-  {% block javascript %}
-  {% endblock %}
+
 </body>
 
 </html>

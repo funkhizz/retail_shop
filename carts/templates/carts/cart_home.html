@@ -17,7 +17,7 @@
                 <tr class="cart-product">
                     <th scope="row">{{ forloop.counter }}</th>
                     <td><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
-                    <td>{{ product.price }}
+                    <td>{{ product.price }} $
                         <div class="float-right">
                             {% include "carts/snippets/remove_product.html" with product_id=product.id cart=cart %}
                         </div>

@@ -83,7 +83,7 @@ class LoginView(FormView):
         # context["form"] = LoginForm()
             else:
                 return redirect("/")
-        return super(LoginView, self).form_invalid
+        return super(LoginView, self).form_invalid(form)
 
 class RegisterView(CreateView):
     form_class = RegisterForm

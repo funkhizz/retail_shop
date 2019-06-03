@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-
-
 <div class="col-10 col-md-6 mx-auto">
-    <h1>Add payment method</h1>
-    <p>4000058260000005</p>
-    <div class="stripe-payment-form" data-next-url="{% if next_url %}{{ next_url }}{% endif %}" data-token='{{ publish_key }}' data-btn-title="Add New Method"></div>
-</div>
+        <h1>Add payment method</h1>
+        <p>4000058260000005</p>
+        <div class="stripe-payment-form" data-next-url="{% if next_url %}{{ next_url }}{% endif %}" data-token='{{ publish_key }}' data-btn-title="Add New Method"></div>
 
-{% endblock %}
-
-{% block javascript %}
+    </div>
 <script src="{% static 'js/stripe_dev.js'%}"></script>
 {% endblock %}
