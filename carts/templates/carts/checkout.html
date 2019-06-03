@@ -66,7 +66,7 @@
     <h1>Finalize Checkout</h1>
     <p>Shipping address: {{ object.shipping_address.get_address }}</p>
     <p>Billing address: {{ object.billing_address.get_address }}</p>
-
+    <p>Payment method: {{ billing_profile.default_card }} (<a href="{{billing_profile.get_payment_method_url}}?next={{ request.build_absolute_uri }}">Change</a>)</p>
     <p>Cart Total: {{ object.cart.total }} $</p>
     <p>Shipping Total: {{ object.shipping_total }} $</p>
     <p>Order Total: {{ object.order_total }} $</p>

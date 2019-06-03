@@ -153,7 +153,7 @@ $(document).ready(function(){
             var newCartItemRemove = hiddenCartItemRemoveForm.clone()
             newCartItemRemove.css("display", "block")
             newCartItemRemove.find(".cart-item-product-id").val(value.id)
-            cartBody.prepend("<tr><th scope=\"row\">" + i + "</th><td><a href='" + value.url + "'>" + value.name + "</a>" + "</td><td>" + value.price + " $" + "<div class='float-right'>" + newCartItemRemove.html() + "</div>" + "</td></tr>")
+            cartBody.prepend("<tr><th scope=\"row\">" + i + "</th><td><a href='" + value.url + "'>" + value.name + "</a>" + "</td><td>" + value.price + " £" + "<div class='float-right'>" + newCartItemRemove.html() + "</div>" + "</td></tr>")
             i --
             })
             cartBody.find(".cart-total").text(data.total)
