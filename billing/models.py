@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save, pre_save
 from accounts.models import GuestEmail
+from accounts.models import User as UserModel
 import stripe
 stripe.api_key = "sk_test_KTD8bZQe1jHFF1tLelcTZPgr00PZpIFVwV"
 
@@ -21,8 +22,10 @@ class BillingProfileManager(models.Manager):
         elif guest_email_id is not None:
             # guest user checkout; auto reloads payment stuff
             guest_email_obj = GuestEmail.objects.get(id=guest_email_id)
-            obj, created = self.model.objects.get_or_create(
-                email=guest_email_obj.email)
+            user_check = UserModel.objects.filter(email=guest_email_obj)
+            if not user_check:
+                obj, created = self.model.objects.get_or_create(
+                    email=guest_email_obj.email)
         else:
             pass
         return obj, created
