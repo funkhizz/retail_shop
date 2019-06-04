@@ -64,3 +64,7 @@ m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
 #         instance.total = 0.00
 
 # pre_save.connect(pre_save_cart_reveicer, sender=Cart)
+
+
+
+# CartItem to add specific quantity of products!
