@@ -25,8 +25,10 @@ class BillingProfileManager(models.Manager):
             guest_email_obj = GuestEmail.objects.get(id=guest_email_id)
             user_check = UserModel.objects.filter(email=guest_email_obj)
             if not user_check:
-                obj, created = self.model.objects.get_or_create(
-                    email=guest_email_obj.email)
+                if self.model.objects.filter(email=guest_email_obj).count() > 1:
+                    obj, created = self.model.objects.filter(email=guest_email_obj).first(), False
+                else:
+                    obj, created = self.model.objects.get_or_create(email=guest_email_obj.email)
         else:
             pass
         return obj, created
