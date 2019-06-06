@@ -33,6 +33,7 @@ urlpatterns = [
     path('cart/', include('carts.urls')),
     path('addresses/', include('addresses.urls')),
     path('billing/', include('billing.urls')),
+    path('marketing/', include('marketing.urls')),
 ]
 
 if settings.DEBUG:
