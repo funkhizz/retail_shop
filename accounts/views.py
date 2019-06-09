@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from  django.views.generic import CreateView, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from  django.views.generic import CreateView, FormView, DetailView
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, get_user_model
 from .forms import LoginForm, RegisterForm, GuestForm
 from django.utils.http import is_safe_url
@@ -8,12 +10,20 @@ from .signals import user_logged_in
 
 User = get_user_model()
 
+# @login_required
+# def account_home_view(request):
+#     return render(request, "accounts/login_view.html", {})
+
+class AccountHomeView(LoginRequiredMixin ,DetailView):
+    template_name  = "accounts/login_home.html"
+    def get_object(self):
+        return self.request.user
 
 def guest_login_page(request):
     guest_form = GuestForm(request.POST or None)
-    context = {
-        "form": guest_form,
-    }
+    # context = {
+    #     "form": guest_form,
+    # }
     next_ = request.GET.get('next')
     next_post = request.POST.get('next')
     redirect_path = next_ or next_post or None
@@ -26,7 +36,6 @@ def guest_login_page(request):
     # context["form"] = LoginForm()
         else:
             return redirect("/")
-
     return redirect("register")
 
 # instead using LoginView

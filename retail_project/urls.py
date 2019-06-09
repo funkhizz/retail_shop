@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.views.generic.base import RedirectView
 
 
 
@@ -34,6 +35,10 @@ urlpatterns = [
     path('addresses/', include('addresses.urls')),
     path('billing/', include('billing.urls')),
     path('marketing/', include('marketing.urls')),
+    # paths for user account settings
+    path('account/', RedirectView.as_view(url='/accounts/login_home')),
+    path('settings/', RedirectView.as_view(url='/accounts/login_home')),
+
 ]
 
 if settings.DEBUG:
