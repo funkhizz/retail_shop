@@ -2,4 +2,71 @@
 
 {% block content %}
 {{ request.user }}
-{% endblock %}
+<div class="row">
+    <div class="col-12 col-md-3 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">Support</h5>
+                <ul class="list-group">
+                    <a href="{% url 'about' %}">
+                        <li class="list-group-item">About</li>
+                    </a>
+                    <a href="{% url 'contact' %}">
+                        <li class="list-group-item">Contact</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">Billing</h5>
+                <ul class="list-group">
+                        <a href="{% url 'about' %}">
+                            <li class="list-group-item">Addresses</li>
+                        </a>
+                        <a href="{% url 'payment' %}">
+                            <li class="list-group-item">Payment Methods</li>
+                        </a>
+                        <a href="#">
+                                <li class="list-group-item">Orders</li>
+                            </a>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">Personal Info</h5>
+                <ul class="list-group">
+                        <a href="#">
+                            <li class="list-group-item">Update User Details</li>
+                        </a>
+                        <a href="{% url 'marketing' %}">
+                            <li class="list-group-item">Email Marketing</li>
+                        </a>
+                        <a href="#">
+                                <li class="list-group-item">Password Reset</li>
+                            </a>
+                    </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">History</h5>
+                <a href="#">
+                        <li class="list-group-item">Products viewed</li>
+                    </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}

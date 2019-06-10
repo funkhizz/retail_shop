@@ -38,6 +38,8 @@ urlpatterns = [
     # paths for user account settings
     path('account/', RedirectView.as_view(url='/accounts/login_home')),
     path('settings/', RedirectView.as_view(url='/accounts/login_home')),
+    path('accounts/', include('accounts.passwords.urls')),
+
 
 ]
 

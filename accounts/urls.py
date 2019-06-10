@@ -9,7 +9,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name="register"),
     path('guest_login/', views.guest_login_page, name="guest_login"),
     path('login_home/', AccountHomeView.as_view(), name="login_home"),
-
 ]
 
 
