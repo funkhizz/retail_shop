@@ -27,6 +27,17 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com']
 
+EMAIL_HOST = 'smtp.gmail.com'
+# Port for sending e-mail.
+EMAIL_PORT = 587
+# Optional SMTP authentication information for EMAIL_HOST.
+EMAIL_HOST_USER = 'vl.hizz@gmail.com'
+EMAIL_HOST_PASSWORD = 'vovusik123'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Retail project'
+
+# BASE_URL = '127.0.0.1:8000'
+
 
 # Application definition
 

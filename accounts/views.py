@@ -7,6 +7,7 @@ from .forms import LoginForm, RegisterForm, GuestForm
 from django.utils.http import is_safe_url
 from .models import GuestEmail
 from .signals import user_logged_in
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -81,6 +82,9 @@ class LoginView(FormView):
         password = form.cleaned_data.get("password")
         user = authenticate(request, username=email, password=password)
         if user is not None:
+            if not user.is_active:
+                messages.error(request, "This user is inactive")
+                return super(LoginView, self).form_invalid(form)
             login(request, user)
             user_logged_in.send(user.__class__, instance=user, request=request)
             try:

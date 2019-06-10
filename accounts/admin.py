@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import GuestEmail
+from .models import GuestEmail, EmailActivation
 from django.contrib.auth import get_user_model
 from .forms import UserAdminChangeForm, UserAdminCreationForm
 from django.contrib.auth.models import Group
@@ -46,3 +46,5 @@ admin.site.register(GuestEmail, GuestEmailAdmin)
 
 # Remove Group Model from admin. We're not using it.
 admin.site.unregister(Group)
+
+admin.site.register(EmailActivation)
