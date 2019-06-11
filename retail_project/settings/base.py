@@ -38,6 +38,8 @@ DEFAULT_FROM_EMAIL = 'Retail project'
 
 BASE_URL = '127.0.0.1:8000'
 
+DEFAULT_ACTIVATION_DAYS = 4
+
 
 # Application definition
 
