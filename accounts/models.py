@@ -8,9 +8,11 @@ from django.template.loader import get_template
 from retail_project.utils import random_string_generator, unique_key_generator
 from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
+from django.db.models import Q
 import random
 
 DEFAULT_ACTIVATION_DAYS = getattr(settings, 'DEFAULT_ACTIVATION_DAYS', 7)
+
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name=None, password=None, is_active=True, is_staff=False, is_admin=False):
         if not email:
@@ -110,6 +112,9 @@ class EmailActivationManager(models.Manager):
 
     def confirmable(self):
         return self.get_queryset().confirmable()
+
+    def email_exists(self, email):
+        return self.get_queryset().filter(Q(email=email) | Q(user__email=email)).filter(activated=False)
 
 class EmailActivation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

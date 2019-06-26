@@ -10,6 +10,8 @@ urlpatterns = [
     path('guest_login/', views.guest_login_page, name="guest_login"),
     path('login_home/', AccountHomeView.as_view(), name="login_home"),
     path('email/confirm/<key>/', AccountEmailActivateView.as_view(), name="email_activate"),
+    path('email/resend-activation/', AccountEmailActivateView.as_view(), name="resend_activation"),
+
 
 ]
 

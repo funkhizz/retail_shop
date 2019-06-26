@@ -2,7 +2,18 @@
 {% block content %}
 <div class="row">
     <div class="col-12 text-center py-5">
+        {% if key %}
         <h1 class="my-5 py-5">Activation Error. Please try again!</h1>
+        {% else %}
+        <h1 class="my-5 py-5">Re-activate your Email!</h1>
+        {% endif %}
+    </div>
+    <div class="col-12 text-center">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-info" type="submit" value="Resend Activation">
+        </form>
     </div>
 </div>
 {% endblock %}
