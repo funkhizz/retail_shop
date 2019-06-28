@@ -6,13 +6,13 @@ from django.contrib.auth import authenticate, login, get_user_model
 from .forms import LoginForm, RegisterForm, GuestForm
 from django.utils.http import is_safe_url
 from .models import GuestEmail
-from .signals import user_logged_in
 from django.contrib import messages
 from .models import EmailActivation
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from .forms import ReactivateEmail
 from django.views.generic.edit import FormMixin
+from retail_project.mixins import NextUrlMixin, RequestFormAttachMixin
 
 User = get_user_model()
 
@@ -126,36 +126,15 @@ def guest_login_page(request):
 #             print("Error")
 #     return render(request, "accounts/login.html", context)
 
-class LoginView(FormView):
+class LoginView(NextUrlMixin, RequestFormAttachMixin, FormView):
     form_class = LoginForm
     template_name = "accounts/login.html"
     success_url = '/'
+    default_next = '/'
 
     def form_valid(self, form):
-        request = self.request
-        next_ = request.GET.get('next')
-        next_post = request.POST.get('next')
-        redirect_path = next_ or next_post or None
-
-        email = form.cleaned_data.get("email")
-        password = form.cleaned_data.get("password")
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            if not user.is_active:
-                messages.error(request, "This user is inactive")
-                return super(LoginView, self).form_invalid(form)
-            login(request, user)
-            user_logged_in.send(user.__class__, instance=user, request=request)
-            try:
-                del request.session['guest_email_id']
-            except:
-                pass
-            if is_safe_url(redirect_path, request.get_host()):
-                return redirect(redirect_path)
-        # context["form"] = LoginForm()
-            else:
-                return redirect("/")
-        return super(LoginView, self).form_invalid(form)
+        next_path = self.get_next_url()
+        return redirect(next_path)
 
 class RegisterView(CreateView):
     form_class = RegisterForm
