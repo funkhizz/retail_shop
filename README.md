@@ -1,4 +1,5 @@
 # retail_project
+ecommerce mobile online shop
 
 1. Pull git repository to your directory git clone https://github.com/funkhizz/retail_project
 2. Create virtual env python* -m venv ** , * - python version, ** – folders name
