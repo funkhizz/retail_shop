@@ -1,0 +1,15 @@
+.carousel-item img {
+    height: 30rem;
+    border: 2px solid black;
+    margin-bottom: 2rem;
+}
+
+.text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.text a {
+    text-decoration: none;
+}

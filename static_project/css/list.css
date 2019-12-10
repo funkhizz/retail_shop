@@ -1,0 +1,14 @@
+.card-text {
+    height: 5rem;
+    border-bottom: 1px solid black;
+}
+
+.card-img-top {
+    border: 1px solid grey;
+    height: 20rem;
+}
+
+.submit-span {
+    display: flex;
+    justify-content: center;
+}
