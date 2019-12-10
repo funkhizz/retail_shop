@@ -1,15 +1,32 @@
 from django import forms
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import EmailActivation
+from .models import EmailActivation, GuestEmail
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from .signals import user_logged_in
-
 User = get_user_model()
 
-class GuestForm(forms.Form):
-    email = forms.EmailField()
+class GuestForm(forms.ModelForm):
+    # email = forms.EmailField()
+    class Meta:
+        model = GuestEmail
+        fields = ['email']
+
+    def __init__(self, request, *args, **kwargs):
+        self.request = request
+        super(GuestForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        obj = super(GuestForm, self).save(commit=False)
+        if commit:
+            obj.save()
+            request = self.request
+            request.session['guest_email_id'] = obj.id
+        return obj
+
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')
@@ -147,6 +164,12 @@ class RegisterForm(forms.ModelForm):
             user.save()
         return user
 
+class UserDetailChangeForm(forms.ModelForm):
+    full_name = forms.CharField(label='Name', required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ['full_name']
 
 class UserAdminChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on

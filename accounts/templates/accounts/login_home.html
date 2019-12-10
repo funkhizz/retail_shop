@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ request.user }}
 <div class="row">
     <div class="col-12 col-md-3 my-3">
         <div class="card">
@@ -41,14 +40,14 @@
             <div class="card-body">
                 <h5 class="card-title text-center">Personal Info</h5>
                 <ul class="list-group">
-                        <a href="#">
+                        <a href="{% url 'details_update' %}">
                             <li class="list-group-item">Update User Details</li>
                         </a>
                         <a href="{% url 'marketing' %}">
                             <li class="list-group-item">Email Marketing</li>
                         </a>
-                        <a href="#">
-                                <li class="list-group-item">Password Reset</li>
+                        <a href="{% url 'password_change' %}">
+                                <li class="list-group-item">Change Password </li>
                             </a>
                     </ul>
 

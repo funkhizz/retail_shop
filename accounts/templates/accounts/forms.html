@@ -9,8 +9,12 @@
         <input type="hidden" name="next" value="{{ next_url }}">
         {% endif %}
         {{ form.as_p }}
+        <label for="email">Email:</label>
+        <input type="text" id='email' class='form-control' value="{{ request.user.email }}" disabled='disabled'></br>
         <button type="submit" class="btn btn-secondary">Save</button>
+        Do you want to change your password? <a href="{% url 'password_change' %}">Link here</a>
     </form>
+
 
 </div>
 {% endif %}
